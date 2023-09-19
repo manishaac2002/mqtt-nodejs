@@ -1,15 +1,15 @@
 import mqtt from "mqtt";
-// const mqtt = require('mqtt');
 
 // Connect to the MQTT broker
-const client = mqtt.connect('mqtt://tr.atrehealthtech.com');
+const brokerUrl = 'mqtt://tr.atrehealthtech.com:1883'
+const client = mqtt.connect(brokerUrl);
 
 // Handle connection events
 client.on('connect', () => {
   console.log('Connected to MQTT broker');
 
   // Publish a message to a topic
-  const topic = 'your/topic';
+  const topic = 'your_topic';
   const message = 'Hello, MQTT!';
   
   client.publish(topic, message, (err) => {
@@ -23,7 +23,7 @@ client.on('connect', () => {
 });
 
   // Subscribe to one or more topics
-  const topics = ['your/topic'];
+  const topics = ['your_topic'];
   
   client.subscribe(topics, (err) => {
     if (!err) {
@@ -39,3 +39,7 @@ client.on('message', (topic, message) => {
   console.log(`Received message on topic ${topic}: ${message.toString()}`);
 });
 
+// const serverPort =1833
+// server.listen(serverPort,()=>{
+
+// })
